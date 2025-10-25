@@ -1,0 +1,350 @@
+/* Estilos específicos para el panel de administración */
+
+.back-button {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.admin-main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 40px;
+}
+
+@media (min-width: 1200px) {
+    .admin-main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Sección de presupuestos */
+.presupuestos-section {
+    width: 100%;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    border-bottom: 3px solid #3058a4;
+    padding-bottom: 10px;
+    margin: 0;
+    flex: 1;
+}
+
+.danger-btn {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 20px;
+}
+
+.danger-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+}
+
+/* Lista de presupuestos */
+.presupuestos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.presupuesto-card {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.presupuesto-card:hover {
+    border-color: #3058a4;
+    box-shadow: 0 4px 15px rgba(48, 88, 164, 0.2);
+}
+
+.presupuesto-card.selected {
+    border-color: #3058a4;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9f4ff 100%);
+    box-shadow: 0 4px 20px rgba(48, 88, 164, 0.3);
+}
+
+.presupuesto-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.presupuesto-card-header h3 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.presupuesto-fecha {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.presupuesto-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.presupuesto-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-label {
+    color: #7f8c8d;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.info-value {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.info-value.highlight {
+    color: #3058a4;
+    font-size: 1.1rem;
+}
+
+.presupuesto-card-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-ver-materiales {
+    flex: 1;
+    background: linear-gradient(135deg, #3058a4 0%, #3058a4 100%);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-ver-materiales:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+}
+
+.btn-eliminar {
+    background: #ecf0f1;
+    color: #e74c3c;
+    border: 2px solid #e74c3c;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-eliminar:hover {
+    background: #e74c3c;
+    color: white;
+}
+
+/* Estado vacío */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 2px dashed #bdc3c7;
+}
+
+.empty-state p {
+    color: #7f8c8d;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.primary-link {
+    display: inline-block;
+    background: linear-gradient(135deg, #3058a4 0%, #3058a4 100%);
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.primary-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+}
+
+/* Detalle de materiales */
+.materiales-detail {
+    background: white;
+    border: 2px solid #3058a4;
+    border-radius: 12px;
+    padding: 30px;
+    animation: fadeInUp 0.5s ease;
+}
+
+@media (max-width: 1199px) {
+    .materiales-detail {
+        grid-column: 1 / -1;
+    }
+}
+
+.materiales-detail h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #3058a4;
+    padding-bottom: 10px;
+}
+
+.presupuesto-info {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.presupuesto-info h3 {
+    color: #3058a4;
+    margin-bottom: 15px;
+}
+
+.presupuesto-info p {
+    color: #2c3e50;
+    margin: 8px 0;
+}
+
+/* Tabla de materiales */
+.materiales-table {
+    overflow-x: auto;
+}
+
+.materiales-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.materiales-table thead {
+    background: linear-gradient(135deg, #3058a4 0%, #3058a4 100%);
+    color: white;
+}
+
+.materiales-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.materiales-table td {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #2c3e50;
+}
+
+.materiales-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.materiales-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.material-calculado {
+    background: rgba(46, 204, 113, 0.05);
+}
+
+.material-pendiente {
+    background: rgba(241, 196, 15, 0.05);
+    color: #95a5a6;
+}
+
+.material-pendiente td {
+    font-style: italic;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .back-button {
+        position: static;
+        display: inline-block;
+        margin: 10px auto;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .danger-btn {
+        margin-left: 0;
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    .presupuesto-card-footer {
+        flex-direction: column;
+    }
+
+    .materiales-table {
+        font-size: 0.9rem;
+    }
+
+    .materiales-table th,
+    .materiales-table td {
+        padding: 10px;
+    }
+}

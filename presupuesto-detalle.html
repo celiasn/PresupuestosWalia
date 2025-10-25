@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Presupuesto - Walia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="presupuesto-detalle.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Presupuesto Generado</h1>
+            <div class="header-actions">
+                <a href="index.html" class="header-btn">Nueva Consulta</a>
+                <a href="admin.html" class="header-btn secondary">Ver Todos</a>
+            </div>
+        </header>
+
+        <main class="detalle-main">
+            <!-- Resumen del presupuesto -->
+            <section class="resumen-section">
+                <h2>Resumen del Proyecto</h2>
+                <div class="resumen-grid" id="resumenGrid">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </section>
+
+            <!-- Lista de materiales -->
+            <section class="materiales-section">
+                <h2>Materiales Necesarios</h2>
+                <div class="materiales-info">
+                    <p>A continuación se detallan todos los materiales calculados para este proyecto:</p>
+                </div>
+                <div class="materiales-list" id="materialesList">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </section>
+
+            <!-- Acciones -->
+            <section class="acciones-section">
+                <button class="btn-action primary" onclick="window.print()">
+                    Imprimir Presupuesto
+                </button>
+                <button class="btn-action secondary" id="exportarBtn">
+                    Exportar Datos
+                </button>
+            </section>
+        </main>
+    </div>
+
+    <script src="presupuesto-detalle.js"></script>
+</body>
+</html>
