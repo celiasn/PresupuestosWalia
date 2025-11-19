@@ -5,8 +5,8 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Inter', sans-serif;
+    background: #f5f7fa;
     min-height: 100vh;
     padding: 20px;
 }
@@ -15,20 +15,20 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     overflow: hidden;
 }
 
 header {
-    background: linear-gradient(135deg, #3058a4 0%, #3058a4 100%);
+    background: #2c3e50;
     color: white;
-    padding: 30px;
+    padding: 24px 30px;
     text-align: center;
 }
 
 header h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 600;
 }
 
@@ -49,38 +49,59 @@ main {
 .visualization-section h2 {
     color: #2c3e50;
     margin-bottom: 20px;
-    font-size: 1.5rem;
-    border-bottom: 3px solid #3058a4;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-bottom: 2px solid #e1e8ed;
     padding-bottom: 10px;
 }
 
+.form-section h2:first-child {
+    margin-top: 0;
+}
+
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 12px;
+    align-items: center;
 }
 
 .form-group label {
-    display: block;
-    color: #34495e;
+    color: #4a5568;
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.form-group .required {
+    color: #e53e3e;
+    margin-left: 2px;
     font-weight: 600;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
 }
 
 .form-group input[type="number"],
+.form-group input[type="text"],
 .form-group select {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+    background: white;
 }
 
 .form-group input[type="number"]:focus,
+.form-group input[type="text"]:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #3058a4;
-    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.1);
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
 }
 
 .radio-group {
@@ -91,56 +112,60 @@ main {
 .radio-group label {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     cursor: pointer;
     font-weight: normal;
+    font-size: 0.875rem;
+    color: #4a5568;
 }
 
 .radio-group input[type="radio"] {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     cursor: pointer;
 }
 
 .area-display {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 20px;
-    border-radius: 10px;
+    background: #f7fafc;
+    padding: 16px;
+    border-radius: 6px;
     text-align: center;
-    margin: 25px 0;
-    border: 2px solid #3058a4;
+    margin: 20px 0;
+    border: 1px solid #e2e8f0;
 }
 
 .area-display strong {
     display: block;
-    color: #2c3e50;
-    font-size: 1rem;
-    margin-bottom: 8px;
+    color: #2d3748;
+    font-size: 0.875rem;
+    margin-bottom: 6px;
+    font-weight: 600;
 }
 
 .area-display span {
-    color: #3058a4;
-    font-size: 2rem;
-    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.75rem;
+    font-weight: 700;
 }
 
 .submit-btn {
     width: 100%;
-    padding: 15px;
-    background: linear-gradient(135deg, #3058a4 0%, #3058a4 100%);
+    padding: 12px;
+    background: #2c3e50;
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 1.1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
 }
 
 .submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+    background: #1a252f;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
 }
 
 .submit-btn:active {
@@ -153,9 +178,9 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f8f9fa;
-    border-radius: 10px;
-    border: 2px solid #e0e0e0;
+    background: #f7fafc;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
     overflow: hidden;
 }
 
@@ -166,9 +191,9 @@ main {
 
 .dimensions-display {
     text-align: center;
-    margin-top: 15px;
-    font-size: 1.2rem;
-    color: #34495e;
+    margin-top: 12px;
+    font-size: 1rem;
+    color: #4a5568;
     font-weight: 600;
 }
 
@@ -186,5 +211,5 @@ main {
 
 .form-section,
 .visualization-section {
-    animation: fadeIn 0.6s ease;
+    animation: fadeIn 0.5s ease;
 }

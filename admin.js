@@ -40,12 +40,23 @@ function crearCardPresupuesto(presupuesto, indexOriginal) {
 
     const carracas = presupuesto.materiales?.carracas || 0;
 
+    // Obtener datos del cliente
+    const cliente = presupuesto.cliente || {};
+    const nombreCompleto = `${cliente.nombre || 'Sin nombre'} ${cliente.apellido || ''}`.trim();
+    const ubicacion = [cliente.ciudad, cliente.pais].filter(Boolean).join(', ') || 'Sin ubicación';
+
     card.innerHTML = `
         <div class="presupuesto-card-header">
-            <h3>${presupuesto.cultivoNombre}</h3>
+            <div class="cliente-info">
+                <h3 class="cliente-nombre">${nombreCompleto}</h3>
+                <p class="cliente-ubicacion">${ubicacion}</p>
+            </div>
             <span class="presupuesto-fecha">${presupuesto.fecha}</span>
         </div>
         <div class="presupuesto-card-body">
+            <div class="cultivo-badge">
+                ${presupuesto.cultivoNombre}
+            </div>
             <div class="presupuesto-info-row">
                 <span class="info-label">Dimensiones:</span>
                 <span class="info-value">${presupuesto.alto}m × ${presupuesto.ancho}m</span>
@@ -54,17 +65,9 @@ function crearCardPresupuesto(presupuesto, indexOriginal) {
                 <span class="info-label">Superficie:</span>
                 <span class="info-value">${presupuesto.area.toLocaleString('es-ES')} m²</span>
             </div>
-            <div class="presupuesto-info-row">
-                <span class="info-label">Orientación:</span>
-                <span class="info-value">${presupuesto.orientacion === 'horizontal' ? 'Horizontal' : 'Vertical'}</span>
-            </div>
-            <div class="presupuesto-info-row">
-                <span class="info-label">Carracas:</span>
-                <span class="info-value highlight">${carracas} unidades</span>
-            </div>
         </div>
         <div class="presupuesto-card-footer">
-            <button class="btn-ver-materiales" data-index="${indexOriginal}">Ver Todos los Materiales</button>
+            <button class="btn-ver-materiales" data-index="${indexOriginal}">Ver Detalles</button>
             <button class="btn-eliminar" data-index="${indexOriginal}">Eliminar</button>
         </div>
     `;

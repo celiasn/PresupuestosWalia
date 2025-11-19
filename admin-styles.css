@@ -2,33 +2,24 @@
 
 .back-button {
     position: absolute;
-    top: 30px;
+    top: 24px;
     right: 30px;
     background: rgba(255, 255, 255, 0.2);
     color: white;
-    padding: 10px 20px;
+    padding: 8px 16px;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 6px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
 }
 
 .back-button:hover {
     background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
 }
 
 .admin-main {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-    padding: 40px;
-}
-
-@media (min-width: 1200px) {
-    .admin-main {
-        grid-template-columns: 1fr 1fr;
-    }
+    padding: 30px 40px;
 }
 
 /* Sección de presupuestos */
@@ -40,147 +31,173 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .section-header h2 {
     color: #2c3e50;
-    font-size: 1.5rem;
-    border-bottom: 3px solid #3058a4;
-    padding-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-bottom: 2px solid #e1e8ed;
+    padding-bottom: 8px;
     margin: 0;
     flex: 1;
 }
 
 .danger-btn {
-    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    background: #e53e3e;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 8px 16px;
+    border-radius: 6px;
     font-weight: 600;
+    font-size: 0.875rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     margin-left: 20px;
+    font-family: 'Inter', sans-serif;
 }
 
 .danger-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+    background: #c53030;
 }
 
-/* Lista de presupuestos */
+/* Lista de presupuestos en GRID */
 .presupuestos-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
 }
 
 .presupuesto-card {
     background: white;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 20px;
-    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 18px;
+    transition: all 0.2s ease;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .presupuesto-card:hover {
-    border-color: #3058a4;
-    box-shadow: 0 4px 15px rgba(48, 88, 164, 0.2);
-}
-
-.presupuesto-card.selected {
-    border-color: #3058a4;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9f4ff 100%);
-    box-shadow: 0 4px 20px rgba(48, 88, 164, 0.3);
+    border-color: #cbd5e0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
 }
 
 .presupuesto-card-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #e0e0e0;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e2e8f0;
+    gap: 12px;
 }
 
-.presupuesto-card-header h3 {
+.cliente-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.cliente-nombre {
     color: #2c3e50;
-    font-size: 1.2rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+}
+
+.cliente-ubicacion {
+    color: #718096;
+    font-size: 0.75rem;
     margin: 0;
+    font-weight: 500;
 }
 
 .presupuesto-fecha {
-    color: #7f8c8d;
-    font-size: 0.9rem;
+    color: #a0aec0;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
 }
 
 .presupuesto-card-body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
+    flex: 1;
+}
+
+.cultivo-badge {
+    background: #edf2f7;
+    color: #2d3748;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 4px;
 }
 
 .presupuesto-info-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 0.8rem;
 }
 
 .info-label {
-    color: #7f8c8d;
-    font-weight: 600;
-    font-size: 0.9rem;
+    color: #718096;
+    font-weight: 500;
 }
 
 .info-value {
-    color: #2c3e50;
+    color: #2d3748;
     font-weight: 600;
-}
-
-.info-value.highlight {
-    color: #3058a4;
-    font-size: 1.1rem;
 }
 
 .presupuesto-card-footer {
     display: flex;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 8px;
+    margin-top: auto;
 }
 
 .btn-ver-materiales {
     flex: 1;
-    background: linear-gradient(135deg, #3058a4 0%, #3058a4 100%);
+    background: #2c3e50;
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
+    padding: 8px 12px;
+    border-radius: 6px;
     font-weight: 600;
+    font-size: 0.8rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-ver-materiales:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+    background: #1a252f;
 }
 
 .btn-eliminar {
-    background: #ecf0f1;
-    color: #e74c3c;
-    border: 2px solid #e74c3c;
-    padding: 10px 15px;
-    border-radius: 8px;
+    background: white;
+    color: #e53e3e;
+    border: 1px solid #e53e3e;
+    padding: 8px 12px;
+    border-radius: 6px;
     font-weight: 600;
+    font-size: 0.8rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-eliminar:hover {
-    background: #e74c3c;
+    background: #e53e3e;
     color: white;
 }
 
@@ -188,132 +205,31 @@
 .empty-state {
     text-align: center;
     padding: 60px 20px;
-    background: #f8f9fa;
-    border-radius: 12px;
-    border: 2px dashed #bdc3c7;
+    background: #f7fafc;
+    border-radius: 8px;
+    border: 2px dashed #cbd5e0;
 }
 
 .empty-state p {
-    color: #7f8c8d;
-    font-size: 1.2rem;
+    color: #718096;
+    font-size: 1rem;
     margin-bottom: 20px;
 }
 
 .primary-link {
     display: inline-block;
-    background: linear-gradient(135deg, #3058a4 0%, #3058a4 100%);
+    background: #2c3e50;
     color: white;
-    padding: 12px 30px;
+    padding: 10px 24px;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 6px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
 }
 
 .primary-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
-}
-
-/* Detalle de materiales */
-.materiales-detail {
-    background: white;
-    border: 2px solid #3058a4;
-    border-radius: 12px;
-    padding: 30px;
-    animation: fadeInUp 0.5s ease;
-}
-
-@media (max-width: 1199px) {
-    .materiales-detail {
-        grid-column: 1 / -1;
-    }
-}
-
-.materiales-detail h2 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-    border-bottom: 3px solid #3058a4;
-    padding-bottom: 10px;
-}
-
-.presupuesto-info {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-}
-
-.presupuesto-info h3 {
-    color: #3058a4;
-    margin-bottom: 15px;
-}
-
-.presupuesto-info p {
-    color: #2c3e50;
-    margin: 8px 0;
-}
-
-/* Tabla de materiales */
-.materiales-table {
-    overflow-x: auto;
-}
-
-.materiales-table table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-}
-
-.materiales-table thead {
-    background: linear-gradient(135deg, #3058a4 0%, #3058a4 100%);
-    color: white;
-}
-
-.materiales-table th {
-    padding: 15px;
-    text-align: left;
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-.materiales-table td {
-    padding: 15px;
-    border-bottom: 1px solid #e0e0e0;
-    color: #2c3e50;
-}
-
-.materiales-table tbody tr:hover {
-    background: #f8f9fa;
-}
-
-.materiales-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.material-calculado {
-    background: rgba(46, 204, 113, 0.05);
-}
-
-.material-pendiente {
-    background: rgba(241, 196, 15, 0.05);
-    color: #95a5a6;
-}
-
-.material-pendiente td {
-    font-style: italic;
-}
-
-/* Animaciones */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    background: #1a252f;
 }
 
 /* Responsive */
@@ -327,24 +243,40 @@
     .section-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: 12px;
     }
 
     .danger-btn {
         margin-left: 0;
-        margin-top: 15px;
         width: 100%;
+    }
+
+    .presupuestos-list {
+        grid-template-columns: 1fr;
     }
 
     .presupuesto-card-footer {
         flex-direction: column;
     }
 
-    .materiales-table {
-        font-size: 0.9rem;
+    .btn-ver-materiales,
+    .btn-eliminar {
+        width: 100%;
     }
+}
 
-    .materiales-table th,
-    .materiales-table td {
-        padding: 10px;
+/* Animación */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.presupuesto-card {
+    animation: fadeIn 0.3s ease;
 }

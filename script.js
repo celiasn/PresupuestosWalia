@@ -1,4 +1,8 @@
 // Elementos del DOM
+const nombreInput = document.getElementById('nombre');
+const apellidoInput = document.getElementById('apellido');
+const paisInput = document.getElementById('pais');
+const ciudadInput = document.getElementById('ciudad');
 const altoInput = document.getElementById('alto');
 const anchoInput = document.getElementById('ancho');
 const cultivoSelect = document.getElementById('cultivo');
@@ -92,7 +96,7 @@ function calcularCarracas(alto, ancho, orientacion, cultivo) {
 // Calcular hormigón
 function calcularHormigon(carracas, postesAcero) {
     // Fórmula simple: 1 m³ por carraca y 1 m³ por poste
-    return (carracas * 1) + (postesAcero * 1);
+    return (carracas/13 * 1) + (postesAcero/15 * 1);
 }
 
 // Calcular postes de acero
@@ -238,15 +242,15 @@ function drawField() {
 
     // Dibujar fondo del campo
     const gradient = ctx.createLinearGradient(offsetX, offsetY, offsetX + fieldWidth, offsetY + fieldHeight);
-    gradient.addColorStop(0, '#86e3ce');
-    gradient.addColorStop(1, '#6fdc8c');
+    gradient.addColorStop(0, '#e6f4ea');
+    gradient.addColorStop(1, '#d4edda');
 
     ctx.fillStyle = gradient;
     ctx.fillRect(offsetX, offsetY, fieldWidth, fieldHeight);
 
     // Dibujar borde del campo
-    ctx.strokeStyle = '#27ae60';
-    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#718096';
+    ctx.lineWidth = 2;
     ctx.strokeRect(offsetX, offsetY, fieldWidth, fieldHeight);
 
     // Dibujar líneas de cultivo según orientación
@@ -258,8 +262,8 @@ function drawField() {
 
 // Dibujar líneas de cultivo
 function drawCropLines(x, y, width, height) {
-    ctx.strokeStyle = '#229954';
-    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = '#a0aec0';
+    ctx.lineWidth = 1;
     ctx.setLineDash([5, 5]);
 
     const spacing = 20; // Espaciado entre líneas en pixels
@@ -287,8 +291,8 @@ function drawCropLines(x, y, width, height) {
 
 // Dibujar dimensiones en el canvas
 function drawDimensions(x, y, width, height) {
-    ctx.fillStyle = '#2c3e50';
-    ctx.font = 'bold 14px Arial';
+    ctx.fillStyle = '#2d3748';
+    ctx.font = '600 13px Inter';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
@@ -305,7 +309,18 @@ function drawDimensions(x, y, width, height) {
 
 // Manejador del botón de submit
 function handleSubmit() {
+    const nombre = nombreInput.value.trim();
+    const apellido = apellidoInput.value.trim();
+    const pais = paisInput.value.trim();
+    const ciudad = ciudadInput.value.trim();
     const cultivo = cultivoSelect.value;
+
+    // Validar campo obligatorio
+    if (!nombre) {
+        alert('Por favor, introduzca el nombre del cliente');
+        nombreInput.focus();
+        return;
+    }
 
     if (!cultivo) {
         alert('Por favor, seleccione un tipo de cultivo');
@@ -325,6 +340,12 @@ function handleSubmit() {
     // Crear objeto con datos del presupuesto
     const presupuesto = {
         id: Date.now(),
+        cliente: {
+            nombre: nombre,
+            apellido: apellido,
+            pais: pais,
+            ciudad: ciudad
+        },
         cultivo: cultivo,
         cultivoNombre: getCultivoName(cultivo),
         alto: state.alto,

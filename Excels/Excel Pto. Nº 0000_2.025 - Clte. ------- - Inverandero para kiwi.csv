@@ -1,0 +1,106 @@
+            , Datos cliente :                                                   ,   , Presupuesto  Nº :                  , 53 /2025             , 
+Nombre :    ,                                                                   ,   , m² a construir :                   , 38000                , m²
+Dirección : ,                                                                   ,   , Pg    :                            , 22                   , 
+Localidad : ,                                                                   ,   , Parc    :                          , 40                   , 
+Provincia   ,                                                                   ,   , Recinto  :                         , 1 - 2                , 
+CIF :       ,                                                                   ,   , Localidad  :                       , Picassent            , 
+Telf.       ,                                                                   ,   , Ref. Catastral :                   ,                      , 
+Nº Cliente :, 430.  00141                                                       ,   ,                                    ,                      , 
+            ,                                                                   ,   , Trabajo / construcción a realizar :, Invernadero para kiwi, 
+            ,                                                                   ,   ,                                    ,                      , 
+            , Materiales                                                        ,   , Precio                             , Cantidad             , Total
+            , Adoquín                                                           , ud, 0.6                                , 2200                 , 1320
+            , "Alambre dulce  1,30 mm  -  Nº   8"                               , kg, 2.3                                , 100                  , 230
+            , "Alambre dulce  1,40 mm  -  Nº   9"                               , kg, 2.2                                ,                      , 0
+            , "Alambre dulce  1,80 mm  -  Nº 12"                                , kg, 2.4                                , 100                  , 240
+            , "Alambre acero  2,00 mm -   K 2"                                  , kg, 2.45                               , 100                  , 245
+            , "Alambre acero duro 2,50 mm"                                      , kg, 2.2                                ,                      , 0
+            , "Alambre acero cercas 3,00 mm "                                   , kg, 2.3                                , 2400                 , 5520
+            , "Alambre dulce  3,00 mm - Nº 17"                                  , kg, 2.2                                , 500                  , 1100
+            , "Alambre acero cercas 3,80 mm "                                   , kg, 2.2                                , 3300                 , 7260
+            , "Alambre dulce 4,40 mm  - Nº 20"                                  , kg, 1.85                               , 100                  , 185
+            , Capuchones - Capuchón                                             , ud, 0.25                               ,                      , 0
+            , Carraca/Tensor doble varilla - Carracas dobles                    , ud, 17.8                               , 570                  , 10146
+            , Carraca/Tensor simple  - Carracas sencilla                        , ud, 12                                 ,                      , 0
+            , "Cordón  4,00 mm"                                                 , ml, 0.3                                ,                      , 0
+            , "Cordón  6,00 mm"                                                 , ml, 0.6                                ,                      , 0
+            , "Cordón  8,00 mm"                                                 , ml, 0.72                               ,                      , 0
+            , "Elástico/CUERDA ELASTICA 6,00MM - R200m"                         , ml, 0.38                               ,                      , 0
+            , "Elástico/CUERDA ELASTICA 6,00MM x 50cm"                          , ud, 0.2                                ,                      , 0
+            , "Empalme   3,00 mm"                                               , ml, 2.9                                , 50                   , 145
+            , "Empalme   4,00 mm"                                               , ud, 3.8                                , 50                   , 190
+            , "Empalme   5,00 mm"                                               , ud, 4.35                               , 100                  , 435
+            , "Empalme   6,00 mm"                                               , ud, 5.2                                ,                      , 0
+            , Grapa (Caja)                                                      , ud, 7.5                                ,                      , 0
+            , Hilo - Cordón trenzado nylón 5mm - Redesmar                       , ml, 0.25                               ,                      , 0
+            , Hilo - Cuerda trenza 7'0mm - Redesmar - Bobina 300mts             , ml, 3.95                               ,                      , 0
+            , Hormigón                                                          , m³, 140                                , 125                  , 17500
+            , Macetas - Cont. Alto 17 x 30 (5'5lts) c/rej negro - Maceta tubular, ud, 0.7                                , 1100                 , 770
+            , Film C/Refuerzo                                                   , m², 0.9                                ,                      , 0
+            , Malla Antihierba                                                  , m², 0.4                                ,                      , 
+            , Malla Antitrip                                                    , m², 0.6                                ,                      , 0
+            , Malla Antigranizo                                                 , m², 0.39                               ,                      , 0
+            , Malla Antigranizo   5 x 4                                         , m², 0.39                               ,                      , 0
+            , Malla Mosquitera (Cristal)  6 x 6                                 , m², 0.41                               , 52000                , 21320
+            , Malla Sombreo  90%                                                , m², 0.85                               ,                      , 0
+            , Plástico incoloro usar tirar -  3A                                , kl, 4.2                                ,                      , 0
+            , Mosquetón ovalado - Moschetone - Gancho anilla                    , ud, 0.18                               ,                      , 0
+            , POLEA/GARRUCHA METAL 40 REFOR CABLE HACER                         , ud, 1.4                                ,                      , 0
+            , "Puerta S.T. Galva  0,00 x 0,00m (2H)"                            , ud, 500                                , 3                    , 1500
+            , "Retenciones  3,00 mm"                                            , ud, 1.45                               ,                      , 0
+            , "Retenciones  4,00 mm"                                            , ud, 2.05                               ,                      , 0
+            , "Retenciones  5,00 mm"                                            , ud, 2.1                                ,                      , 0
+            , "Retenciones  6,00 mm"                                            , ud, 2.4                                ,                      , 0
+            , "Retenciones  8,00 mm"                                            , ud, 2.75                               , 570                  , 1567.5
+            , Tensor sonaja invernadero                                         , ud, 2.8                                , 350                  , 980
+            , "Trenza Bifilar   5,00 mm  "                                      , ml, 0.22                               , 55000                , 12100
+            , "Trenza Trifilar  5,40 mm  "                                      , ml, 0.23                               ,                      , 0
+            , "Trenza Trifilar  8,20 mm  "                                      , ml, 0.65                               , 3500                 , 2275
+            , "Tubo Galv sendzimir redondo, 32mm x 1,50 x 2000 "                , ud, 5                                  , 2200                 , 11000
+            , "Tubo Galv sendzimir redondo, 40mm x 1,50 x 2000 "                , ud, 7.5                                ,                      , 0
+            , "Tubo Galv sendzimir redondo, 48mm x 1,50 x 2500"                 , ud, 10.65                              ,                      , 0
+            , "Tubo Galv sendzimir redondo, 48mm x 1,50 x 3.000"                , ud, 12.8                               ,                      , 0
+            , "Tubo Galv sendzimir redondo, 48mm x 1,50 x 3500"                 , ud, 14.91                              ,                      , 0
+            , "Tubo Galv sendzimir redondo, 48mm x 1,50 x 4000"                 , ud, 17.04                              ,                      , 0
+            , "Tubo Galv sendzimir redondo, 50mm x 2,00 x 4500"                 , ud, 12.25                              ,                      , 0
+            , "Tubo Galv sendzimir redondo, 60mm x 1,50 x 2000 "                , ud, 9.8                                ,                      , 0
+            , "Tubo Galv sendzimir redondo, 60mm x 1,50 x 3000"                 , ud, 12.5                               ,                      , 0
+            , "Tubo Galv sendzimir redondo, 60mm x 1,50 x 4000 "                , ud, 19.3                               , 1100                 , 21230
+            , "Tubo Galv sendzimir redondo, 60mm x 1,50 x 4500"                 , ud, 22.85                              ,                      , 0
+            , "Tubo Galv sendzimir redondo, 60mm x 2,00 x 5500"                 , ud, 31.4                               ,                      , 0
+            , "Tubo Galv sendzimir redondo, 60mm x 2,50 x 5500"                 , ud, 29                                 ,                      , 0
+            , "Tubo Galv sendzimir redondo, 76mm x 2,00 x 3000 "                , ud, 22.8                               ,                      , 0
+            , "Tubo Galv sendzimir redondo, 76mm x 2,00 x 3500"                 , ud, 26.6                               ,                      , 0
+            , "Tubo Galv sendzimir redondo, 90mm x 3,00 x 4500"                 , ud, 59.6                               ,                      , 0
+            , "Tubo Galv caliente redondo, 60mm x 2,00 x 6000"                  , ud, 32                                 ,                      , 0
+            , "Tubo Galv caliente redondo, 76mm x 2,00 x 2500"                  , ud, 19.5                               , 540                  , 10530
+            , "Tubo Galv caliente redondo, 76mm x 3,00 x 4500"                  , ud, 41.5                               ,                      , 0
+            , "Tubo Galv caliente redondo, 90 x 3,00 x 5500"                    , ud, 19.5                               ,                      , 0
+            , Palos de 6/8 - Pino                                               , ud, 5.2                                ,                      , 0
+            , Palos de 6/8 - Eucalipto x 2m                                     , ud, 4.45                               ,                      , 0
+            , Palos de 6/8 - Eucalipto x 3m                                     , ud, 6.7                                ,                      , 0
+            , Palos x 8/10 - Eucalipto                                          , ud, 9.5                                ,                      , 0
+            , Trabajo c/ máquina (hoyo)                                         , ud, 1                                  ,                      , 0
+            , Trabajo c/ máquina                                                , hr, 50                                 , 120                  , 6000
+            , Trabajo c/ tractor                                                , hr, 40                                 ,                      , 0
+            , Trabajo c/ camión grúa                                            , hr, 50                                 ,                      , 0
+            , Desplazamiento                                                    , ud, 50                                 ,                      , 0
+            , Porte  Alicante                                                   , ud, 200                                ,                      , 0
+            , Porte  Murcia                                                     , ud, 200                                ,                      , 0
+            , Porte  Valencia                                                   , ud, 600                                ,                      , 0
+            , Mano de obra                                                      , m², 1.5                                , 38300                , 57450
+            , Mano de obra                                                      , hr, 20                                 ,                      , 0
+            ,                                                                   , ud,                                    ,                      , 0
+            ,                                                                   ,   ,                                    ,                      , 191238.5
+            , Beneficio                                                         ,   , #REF!                              ,                      , 
+            ,                                                                   ,   ,                                    ,                      , 
+            ,                                                                   ,   ,                                    ,                      , 
+            ,                                                                   ,   ,                                    ,                      , 
+            ,                                                                   ,   ,                                    ,                      , 
+            , Total   m²                                                        ,   , Total   ml / m²                    ,                      , 5.03259210526316
+            ,                                                                   ,   ,                                    ,                      , 
+            ,                                                                   ,   , Total ml / m² :                    ,                      , 
+            , Total m²:                                                         ,   ,                                    ,                      , 
+            ,                                                                   ,   , Importe materiales (B.I.) ->       ,                      , 0
+            ,                                                                   ,   , I.V.A. ->                          , 21%                  , 0
+            ,                                                                   ,   , TOTAL PTO.  ->                     ,                      , 0

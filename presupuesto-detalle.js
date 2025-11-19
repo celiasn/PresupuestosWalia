@@ -45,7 +45,19 @@ function mostrarError() {
 
 // Renderizar resumen del presupuesto
 function renderResumen(presupuesto) {
+    const cliente = presupuesto.cliente || {};
+    const nombreCompleto = `${cliente.nombre || 'Sin nombre'} ${cliente.apellido || ''}`.trim();
+    const ubicacion = [cliente.ciudad, cliente.pais].filter(Boolean).join(', ') || 'No especificado';
+
     resumenGrid.innerHTML = `
+        <div class="resumen-item">
+            <span class="resumen-label">Cliente:</span>
+            <span class="resumen-valor">${nombreCompleto}</span>
+        </div>
+        <div class="resumen-item">
+            <span class="resumen-label">Ubicación:</span>
+            <span class="resumen-valor">${ubicacion}</span>
+        </div>
         <div class="resumen-item">
             <span class="resumen-label">Cultivo:</span>
             <span class="resumen-valor">${presupuesto.cultivoNombre}</span>
@@ -104,8 +116,15 @@ function exportarDatos() {
     }
 
     // Crear CSV
+    const cliente = presupuesto.cliente || {};
+    const nombreCompleto = `${cliente.nombre || 'Sin nombre'} ${cliente.apellido || ''}`.trim();
+    const ubicacion = [cliente.ciudad, cliente.pais].filter(Boolean).join(', ') || 'No especificado';
+
     let csv = 'Presupuesto Walia\n\n';
-    csv += 'Información del Proyecto\n';
+    csv += 'Información del Cliente\n';
+    csv += `Cliente,${nombreCompleto}\n`;
+    csv += `Ubicación,${ubicacion}\n`;
+    csv += '\nInformación del Proyecto\n';
     csv += `Cultivo,${presupuesto.cultivoNombre}\n`;
     csv += `Dimensiones,${presupuesto.alto}m x ${presupuesto.ancho}m\n`;
     csv += `Superficie Total,${presupuesto.area} m²\n`;
