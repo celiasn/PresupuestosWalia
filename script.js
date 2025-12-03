@@ -32,28 +32,73 @@ const reglasPresupuesto = {
         'pitahaya': 6,
         'cereza': 12,
         'fresas': 8
-    },
-
-    // Materiales base
-    materiales: {
-        'hormigon': { nombre: 'Hormigón', unidad: 'm³' },
-        'maquinaHoyos': { nombre: 'Máquina de Hoyos', unidad: 'horas' },
-        'cableado': { nombre: 'Cableado', unidad: 'm' },
-        'postesAcero': { nombre: 'Postes de Acero', unidad: 'unidades' },
-        'carracas': { nombre: 'Carracas', unidad: 'unidades' },
-        'tela': { nombre: 'Tela', unidad: 'm²' }
-    },
-
-    // Precios por material (placeholder para futuro)
-    precios: {
-        'hormigon': 0,
-        'maquinaHoyos': 0,
-        'cableado': 0,
-        'postesAcero': 0,
-        'carracas': 0,
-        'tela': 0
     }
 };
+
+// Mapeo de materiales calculados a materiales del catálogo
+// Se genera automáticamente desde el catálogo de materiales
+const mapeoMateriales = {};
+
+// Generar mapeo automáticamente desde el catálogo
+Object.keys(catalogoMateriales).forEach(key => {
+    mapeoMateriales[key] = {
+        catalogoKey: key,
+        conversionFactor: 1
+    };
+});
+
+// Sobrescribir mapeos específicos que requieren conversión
+mapeoMateriales['cableado'] = {
+    catalogoKey: 'alambre_dulce_3_40',
+    // Conversión: metros de cableado a kg de alambre
+    // Alambre 3.40mm pesa aprox 0.055 kg/m
+    conversionFactor: 0.055
+};
+
+// Alias para materiales calculados
+mapeoMateriales['maquinaHoyos'] = {
+    catalogoKey: 'trabajo_maquina_hora',
+    conversionFactor: 1
+};
+mapeoMateriales['postesAcero'] = {
+    catalogoKey: 'tubo_galv_sendz_60x2_00x5500',
+    conversionFactor: 1
+};
+mapeoMateriales['carracas'] = {
+    catalogoKey: 'carraca_doble',
+    conversionFactor: 1
+};
+mapeoMateriales['tela'] = {
+    catalogoKey: 'malla_antigranizo',
+    conversionFactor: 1
+};
+
+// Función para obtener información de un material del catálogo
+function obtenerInfoMaterial(materialKey) {
+    const mapeo = mapeoMateriales[materialKey];
+    if (!mapeo || !mapeo.catalogoKey) return null;
+
+    const materialCatalogo = catalogoMateriales[mapeo.catalogoKey];
+    if (!materialCatalogo) return null;
+
+    return {
+        nombre: materialCatalogo.nombre,
+        unidad: materialCatalogo.unidad,
+        precioUnitario: materialCatalogo.precioUnitario,
+        conversionFactor: mapeo.conversionFactor
+    };
+}
+
+// Función para calcular precio total de un material
+function calcularPrecioMaterial(materialKey, cantidad) {
+    const info = obtenerInfoMaterial(materialKey);
+    if (!info) return 0;
+
+    // Aplicar factor de conversión si existe
+    const cantidadReal = cantidad * info.conversionFactor;
+
+    return info.precioUnitario * cantidadReal;
+}
 
 // Funciones de cálculo de materiales
 
@@ -149,22 +194,61 @@ function calcularTela(alto, ancho) {
     return area * (19000 / 14000) + perimetro;
 }
 
-// Calcular todos los materiales (por ahora solo carracas, se expandirá)
+// Calcular todos los materiales con sus precios
 function calcularMateriales(alto, ancho, orientacion, cultivo) {
     const area = alto * ancho;
     let calculoCarracas = calcularCarracas(alto, ancho, orientacion, cultivo);
     let postesAcero = calcularPostesAcero(alto, ancho, orientacion, cultivo);
+    let hormigon = calcularHormigon(calculoCarracas, postesAcero);
+    let maquinaHoyos = calcularMaquinaHoyos(calculoCarracas);
+    let cableado = calcularCableado(alto, ancho, orientacion, calculoCarracas);
+    let tela = calcularTela(alto, ancho);
 
     const materiales = {
-        carracas: calculoCarracas,
-        postesAcero: postesAcero,
-        hormigon: calcularHormigon(calculoCarracas, postesAcero),
-        maquinaHoyos: calcularMaquinaHoyos(calculoCarracas),
-        cableado: calcularCableado(alto, ancho, orientacion, calculoCarracas),
-        tela: calcularTela(alto, ancho)
+        carracas: {
+            cantidad: calculoCarracas,
+            precioUnitario: obtenerInfoMaterial('carracas')?.precioUnitario || 0,
+            precioTotal: calcularPrecioMaterial('carracas', calculoCarracas)
+        },
+        postesAcero: {
+            cantidad: postesAcero,
+            precioUnitario: obtenerInfoMaterial('postesAcero')?.precioUnitario || 0,
+            precioTotal: calcularPrecioMaterial('postesAcero', postesAcero)
+        },
+        hormigon: {
+            cantidad: hormigon,
+            precioUnitario: obtenerInfoMaterial('hormigon')?.precioUnitario || 0,
+            precioTotal: calcularPrecioMaterial('hormigon', hormigon)
+        },
+        maquinaHoyos: {
+            cantidad: maquinaHoyos,
+            precioUnitario: obtenerInfoMaterial('maquinaHoyos')?.precioUnitario || 0,
+            precioTotal: calcularPrecioMaterial('maquinaHoyos', maquinaHoyos)
+        },
+        cableado: {
+            cantidad: cableado,
+            precioUnitario: obtenerInfoMaterial('cableado')?.precioUnitario || 0,
+            precioTotal: calcularPrecioMaterial('cableado', cableado)
+        },
+        tela: {
+            cantidad: tela,
+            precioUnitario: obtenerInfoMaterial('tela')?.precioUnitario || 0,
+            precioTotal: calcularPrecioMaterial('tela', tela)
+        }
     };
 
     return materiales;
+}
+
+// Calcular precio total del presupuesto
+function calcularPrecioTotal(materiales) {
+    let total = 0;
+    for (const key in materiales) {
+        if (materiales[key].precioTotal) {
+            total += materiales[key].precioTotal;
+        }
+    }
+    return total;
 }
 
 // Inicialización
@@ -336,6 +420,7 @@ function handleSubmit() {
 
     // Calcular materiales
     const materiales = calcularMateriales(state.alto, state.ancho, state.orientacion, cultivo);
+    const precioTotal = calcularPrecioTotal(materiales);
 
     // Crear objeto con datos del presupuesto
     const presupuesto = {
@@ -353,6 +438,7 @@ function handleSubmit() {
         area: state.alto * state.ancho,
         orientacion: state.orientacion,
         materiales: materiales,
+        precioTotal: precioTotal,
         fecha: new Date().toLocaleDateString('es-ES'),
         fechaCompleta: new Date().toISOString()
     };

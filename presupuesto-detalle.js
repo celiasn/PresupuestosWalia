@@ -3,15 +3,57 @@ const resumenGrid = document.getElementById('resumenGrid');
 const materialesList = document.getElementById('materialesList');
 const exportarBtn = document.getElementById('exportarBtn');
 
-// Información de materiales
-const materialesInfo = {
-    'hormigon': { nombre: 'Hormigón', unidad: 'm³' },
-    'maquinaHoyos': { nombre: 'Máquina de Hoyos', unidad: 'horas' },
-    'cableado': { nombre: 'Cableado', unidad: 'm' },
-    'postesAcero': { nombre: 'Postes de Acero', unidad: 'unidades' },
-    'carracas': { nombre: 'Carracas', unidad: 'unidades' },
-    'tela': { nombre: 'Tela', unidad: 'm²' }
+// Mapeo de materiales calculados a materiales del catálogo (debe coincidir con script.js)
+// Se genera automáticamente desde el catálogo de materiales
+const mapeoMateriales = {};
+
+// Generar mapeo automáticamente desde el catálogo
+Object.keys(catalogoMateriales).forEach(key => {
+    mapeoMateriales[key] = {
+        catalogoKey: key,
+        conversionFactor: 1
+    };
+});
+
+// Sobrescribir mapeos específicos que requieren conversión
+mapeoMateriales['cableado'] = {
+    catalogoKey: 'alambre_dulce_3_40',
+    // Conversión: metros de cableado a kg de alambre
+    // Alambre 3.40mm pesa aprox 0.055 kg/m
+    conversionFactor: 0.055
 };
+
+// Alias para materiales calculados
+mapeoMateriales['maquinaHoyos'] = {
+    catalogoKey: 'trabajo_maquina_hora',
+    conversionFactor: 1
+};
+mapeoMateriales['postesAcero'] = {
+    catalogoKey: 'tubo_galv_sendz_60x2_00x5500',
+    conversionFactor: 1
+};
+mapeoMateriales['carracas'] = {
+    catalogoKey: 'carraca_doble',
+    conversionFactor: 1
+};
+mapeoMateriales['tela'] = {
+    catalogoKey: 'malla_antigranizo',
+    conversionFactor: 1
+};
+
+// Función para obtener información de un material del catálogo
+function obtenerInfoMaterial(materialKey) {
+    const mapeo = mapeoMateriales[materialKey];
+    if (!mapeo || !mapeo.catalogoKey) return { nombre: materialKey, unidad: '' };
+
+    const materialCatalogo = catalogoMateriales[mapeo.catalogoKey];
+    if (!materialCatalogo) return { nombre: materialKey, unidad: '' };
+
+    return {
+        nombre: materialCatalogo.nombre,
+        unidad: materialCatalogo.unidad
+    };
+}
 
 // Inicialización
 function init() {
@@ -78,6 +120,10 @@ function renderResumen(presupuesto) {
             <span class="resumen-label">Fecha:</span>
             <span class="resumen-valor">${presupuesto.fecha}</span>
         </div>
+        <div class="resumen-item precio-total-item">
+            <span class="resumen-label">Precio Total:</span>
+            <span class="resumen-valor precio-total">${(presupuesto.precioTotal || 0).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €</span>
+        </div>
     `;
 }
 
@@ -85,8 +131,19 @@ function renderResumen(presupuesto) {
 function renderMateriales(presupuesto) {
     const materiales = presupuesto.materiales;
 
-    materialesList.innerHTML = Object.entries(materiales).map(([key, cantidad]) => {
-        const info = materialesInfo[key];
+    materialesList.innerHTML = Object.entries(materiales).map(([key, material]) => {
+        const info = obtenerInfoMaterial(key);
+
+        // Compatibilidad con versiones antiguas donde material era solo un número
+        let cantidad, precioTotal;
+        if (typeof material === 'object') {
+            cantidad = material.cantidad;
+            precioTotal = material.precioTotal || 0;
+        } else {
+            cantidad = material;
+            precioTotal = 0;
+        }
+
         const tieneCalculo = cantidad > 0;
 
         return `
@@ -96,9 +153,11 @@ function renderMateriales(presupuesto) {
                 </div>
                 <div class="material-body">
                     <div class="material-cantidad">
-                        ${tieneCalculo ? cantidad.toLocaleString('es-ES') : '<span class="pendiente-text">Por calcular</span>'}
+                        ${tieneCalculo ? cantidad.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '<span class="pendiente-text">Por calcular</span>'}
                     </div>
-                    <div class="material-unidad">${info.unidad}</div>
+                    <div class="material-precio-total">
+                        ${tieneCalculo ? precioTotal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €' : '-'}
+                    </div>
                     ${!tieneCalculo ? '<div class="material-badge">Pendiente</div>' : ''}
                 </div>
             </div>
@@ -131,13 +190,31 @@ function exportarDatos() {
     csv += `Orientación,${presupuesto.orientacion}\n`;
     csv += `Fecha,${presupuesto.fecha}\n`;
     csv += '\n\nMateriales Necesarios\n';
-    csv += 'Material,Cantidad,Unidad\n';
+    csv += 'Material,Cantidad,Unidad,Precio Unitario,Precio Total\n';
 
-    Object.entries(presupuesto.materiales).forEach(([key, cantidad]) => {
-        const info = materialesInfo[key];
+    Object.entries(presupuesto.materiales).forEach(([key, material]) => {
+        const info = obtenerInfoMaterial(key);
+
+        // Compatibilidad con versiones antiguas
+        let cantidad, precioUnitario, precioTotal;
+        if (typeof material === 'object') {
+            cantidad = material.cantidad;
+            precioUnitario = material.precioUnitario || 0;
+            precioTotal = material.precioTotal || 0;
+        } else {
+            cantidad = material;
+            precioUnitario = 0;
+            precioTotal = 0;
+        }
+
         const cantidadTexto = cantidad > 0 ? cantidad : 'Por calcular';
-        csv += `${info.nombre},${cantidadTexto},${info.unidad}\n`;
+        const precioUnitarioTexto = cantidad > 0 ? `${precioUnitario.toFixed(2)} €` : '-';
+        const precioTotalTexto = cantidad > 0 ? `${precioTotal.toFixed(2)} €` : '-';
+
+        csv += `${info.nombre},${cantidadTexto},${info.unidad},${precioUnitarioTexto},${precioTotalTexto}\n`;
     });
+
+    csv += `\nPrecio Total,,,${(presupuesto.precioTotal || 0).toFixed(2)} €\n`;
 
     // Descargar archivo
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
