@@ -28,7 +28,7 @@ const reglasPresupuesto = {
         'citricos': 12,
         'kiwi': 6,
         'arandanos': 6,
-        'uva': 6,
+        'uva': 3,
         'pitahaya': 6,
         'cereza': 12,
         'fresas': 8
@@ -135,7 +135,7 @@ function calcularCarracas(alto, ancho, orientacion, cultivo) {
     // Redondear a múltiplo de 5 si es decimal
     carracas = redondearMultiploDe5(carracas);
 
-    return carracas*2;
+    return carracas;
 }
 
 // Calcular hormigón
@@ -153,19 +153,12 @@ function calcularPostesAcero(alto, ancho, orientacion, cultivo) {
         return 0;
     }
 
-    // Determinar la dimensión según la orientación
-    let dimension;
-    if (orientacion === 'vertical') {
-        dimension = alto;
-    } else {
-        dimension = ancho;
-    }
-
     // Calcular postes: dimensión / partición
-    let postes = dimension / particion;
+    let postesLargo = alto / particion;
+    let postesCorto = ancho / particion;
 
     // Redondear a múltiplo de 5 si es decimal
-    postes = redondearMultiploDe5(postes);
+    postes = redondearMultiploDe5(postesCorto*postesLargo);
 
     return postes;
 }
@@ -450,6 +443,9 @@ function handleSubmit() {
     localStorage.setItem('ultimoPresupuesto', JSON.stringify(presupuesto));
 
     console.log('Presupuesto generado:', presupuesto);
+
+    // Limpiar flag de acceso admin (usuario llegó desde el formulario normal)
+    localStorage.removeItem('adminAccess');
 
     // Redirigir a la página de detalle
     window.location.href = 'presupuesto-detalle.html';

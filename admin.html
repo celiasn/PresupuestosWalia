@@ -24,6 +24,37 @@
                     <button id="clearAllBtn" class="danger-btn">Limpiar Todos</button>
                 </div>
 
+                <!-- Filtros -->
+                <div class="filtros-section">
+                    <div class="filtros-grid">
+                        <div class="filtro-grupo">
+                            <label for="filtroFecha">Fecha</label>
+                            <input type="date" id="filtroFecha" class="filtro-input">
+                        </div>
+                        <div class="filtro-grupo">
+                            <label for="filtroFruta">Cultivo</label>
+                            <select id="filtroFruta" class="filtro-select">
+                                <option value="">Todos los cultivos</option>
+                            </select>
+                        </div>
+                        <div class="filtro-grupo">
+                            <label for="filtroPais">País</label>
+                            <select id="filtroPais" class="filtro-select">
+                                <option value="">Todos los países</option>
+                            </select>
+                        </div>
+                        <div class="filtro-grupo">
+                            <label for="filtroCiudad">Ciudad</label>
+                            <select id="filtroCiudad" class="filtro-select">
+                                <option value="">Todas las ciudades</option>
+                            </select>
+                        </div>
+                        <div class="filtro-grupo">
+                            <button id="limpiarFiltros" class="btn-limpiar-filtros">Limpiar Filtros</button>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="presupuestosList" class="presupuestos-list">
                     <!-- Los presupuestos se insertarán aquí dinámicamente -->
                 </div>

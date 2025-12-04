@@ -1,9 +1,14 @@
 /* Estilos específicos para el panel de administración */
 
+header {
+    position: relative;
+}
+
 .back-button {
     position: absolute;
-    top: 24px;
+    top: 50%;
     right: 30px;
+    transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.2);
     color: white;
     padding: 8px 16px;
@@ -25,6 +30,71 @@
 /* Sección de presupuestos */
 .presupuestos-section {
     width: 100%;
+}
+
+/* Filtros */
+.filtros-section {
+    margin-bottom: 24px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.filtros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    align-items: end;
+}
+
+.filtro-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filtro-grupo label {
+    color: #4a5568;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.filtro-input,
+.filtro-select {
+    padding: 8px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    background: white;
+    transition: border-color 0.2s ease;
+}
+
+.filtro-input:focus,
+.filtro-select:focus {
+    outline: none;
+    border-color: #2c3e50;
+    box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+}
+
+.btn-limpiar-filtros {
+    background: #e2e8f0;
+    color: #4a5568;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    height: fit-content;
+}
+
+.btn-limpiar-filtros:hover {
+    background: #cbd5e0;
 }
 
 .section-header {

@@ -58,6 +58,7 @@ function obtenerInfoMaterial(materialKey) {
 // Inicialización
 function init() {
     cargarPresupuesto();
+    verificarAccesoAdmin();
     exportarBtn.addEventListener('click', exportarDatos);
 }
 
@@ -228,6 +229,27 @@ function exportarDatos() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+}
+
+// Verificar acceso admin y mostrar/ocultar botón "Ver Todos"
+function verificarAccesoAdmin() {
+    const adminBtn = document.querySelector('a[href="admin.html"]');
+
+    if (adminBtn) {
+        // Verificar si el usuario llegó desde el admin panel
+        const referrer = document.referrer;
+        const esDesdeAdmin = referrer.includes('admin.html');
+
+        // También verificar si hay parámetro en la URL o localStorage que indique acceso admin
+        const urlParams = new URLSearchParams(window.location.search);
+        const adminParam = urlParams.get('admin');
+        const adminAccess = localStorage.getItem('adminAccess');
+
+        // Mostrar botón solo si es admin o viene desde admin
+        if (!esDesdeAdmin && !adminParam && !adminAccess) {
+            adminBtn.style.display = 'none';
+        }
+    }
 }
 
 // Iniciar la aplicación
