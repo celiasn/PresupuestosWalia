@@ -23,20 +23,97 @@ let state = {
 
 // Reglas de presupuesto (estructura manejable para futuro panel de administración)
 const reglasPresupuesto = {
-    // Particiones según tipo de cultivo (en metros)
     particiones: {
-        'citricos': 12,
+        'fresas': 8,
         'kiwi': 6,
         'arandanos': 6,
         'uva': 3,
         'pitahaya': 6,
         'cereza': 12,
-        'fresas': 8
+        'caqui': 8,
+        'citricos': 12
+    },
+    altura: {
+        'fresas': 4,
+        'kiwi': 4,
+        'arandanos': 4,
+        'uva': 4,
+        'pitahaya': 4,
+        'cereza': 5,
+        'caqui': 5,
+        'citricos': 5,
+    },
+    tubos76: {
+        'fresas': {
+            'height': 2,
+            'width': 2500
+        },
+        'kiwi': {
+            'height': 2,
+            'width': 2500
+        },
+        'arandanos': {
+            'height': 2,
+            'width': 2500
+        },
+        'uva': {
+            'height': 2,
+            'width': 2500
+        },
+        'pitahaya': {
+            'height': 2,
+            'width': 2500
+        },
+        'cereza': {
+            'height': 3,
+            'width': 4000
+        },
+        'caqui': {
+            'height': 3,
+            'width': 4000
+        },
+        'citricos': {
+            'height': 3,
+            'width': 4500
+        }
+    },
+    tubos60: {
+        'fresas': {
+            'height': 1.5,
+            'width': 4000
+        },
+        'kiwi': {
+            'height': 1.5,
+            'width': 4000
+        },
+        'arandanos': {
+            'height': 2,
+            'width': 5500
+        },
+        'uva': {
+            'height': 1.5,
+            'width': 4000
+        },
+        'pitahaya': {
+            'height': 1.5,
+            'width': 4000
+        },
+        'cereza': {
+            'height': 2,
+            'width': 5000
+        },
+        'caqui': {
+            'height': 2,
+            'width': 5000
+        },
+        'citricos': {
+            'height': 2,
+            'width': 5500
+        }
     }
 };
 
 // Mapeo de materiales calculados a materiales del catálogo
-// Se genera automáticamente desde el catálogo de materiales
 const mapeoMateriales = {};
 
 // Generar mapeo automáticamente desde el catálogo
@@ -72,6 +149,67 @@ mapeoMateriales['tela'] = {
     catalogoKey: 'malla_antigranizo',
     conversionFactor: 1
 };
+
+// Función para seleccionar material de tubo de 76mm según cultivo
+function seleccionarMaterialTubo76(cultivo) {
+    const especificaciones = reglasPresupuesto.tubos76[cultivo];
+    if (!especificaciones) return null;
+
+    const height = especificaciones.height.toString().replace('.', '_');
+    const heightFormatted = height.includes('_') ? height + '0' : height + '_00';
+    const width = especificaciones.width;
+
+    // Los tubos de 76 usan galvanizado caliente
+    const claveMaterial = `tubo_galv_cal_76x${heightFormatted}x${width}`;
+
+    // Verificar si el material existe en el catálogo
+    if (!catalogoMateriales[claveMaterial]) {
+        console.warn(`Material no encontrado en catálogo: ${claveMaterial}`);
+        return null;
+    }
+
+    return claveMaterial;
+}
+
+// Función para seleccionar material de tubo de 60mm según cultivo
+function seleccionarMaterialTubo60(cultivo) {
+    const especificaciones = reglasPresupuesto.tubos60[cultivo];
+    if (!especificaciones) return null;
+
+    const height = especificaciones.height.toString().replace('.', '_');
+    const heightFormatted = height.includes('_') ? height + '0' : height + '_00';
+    const width = especificaciones.width;
+
+    // Los tubos de 60 usan galvanizado sendzimir
+    const claveMaterial = `tubo_galv_sendz_60x${heightFormatted}x${width}`;
+
+    // Verificar si el material existe en el catálogo
+    if (!catalogoMateriales[claveMaterial]) {
+        console.warn(`Material no encontrado en catálogo: ${claveMaterial}`);
+        return null;
+    }
+
+    return claveMaterial;
+}
+
+// Función para obtener especificaciones de tubos para un cultivo
+function obtenerEspecificacionesTubos(cultivo) {
+    const tubo76Key = seleccionarMaterialTubo76(cultivo);
+    const tubo60Key = seleccionarMaterialTubo60(cultivo);
+
+    return {
+        tubo76: tubo76Key ? {
+            key: tubo76Key,
+            especificaciones: reglasPresupuesto.tubos76[cultivo],
+            material: catalogoMateriales[tubo76Key]
+        } : null,
+        tubo60: tubo60Key ? {
+            key: tubo60Key,
+            especificaciones: reglasPresupuesto.tubos60[cultivo],
+            material: catalogoMateriales[tubo60Key]
+        } : null
+    };
+}
 
 // Función para obtener información de un material del catálogo
 function obtenerInfoMaterial(materialKey) {
@@ -465,5 +603,32 @@ function getCultivoName(value) {
     return cultivos[value] || value;
 }
 
+// Función de ejemplo para mostrar la selección de tubos
+function ejemploSeleccionTubos() {
+    console.log('=== Ejemplo de selección de materiales de tubos ===');
+
+    const cultivos = ['fresas', 'kiwi', 'arandanos', 'uva', 'pitahaya', 'cereza', 'caqui', 'citricos'];
+
+    cultivos.forEach(cultivo => {
+        console.log(`\n${cultivo.toUpperCase()}:`);
+        const tubos = obtenerEspecificacionesTubos(cultivo);
+
+        if (tubos.tubo76) {
+            console.log(`  Tubo 76: ${tubos.tubo76.key}`);
+            console.log(`    Height: ${tubos.tubo76.especificaciones.height}, Width: ${tubos.tubo76.especificaciones.width}`);
+            console.log(`    Precio: €${tubos.tubo76.material.precioUnitario}`);
+        }
+
+        if (tubos.tubo60) {
+            console.log(`  Tubo 60: ${tubos.tubo60.key}`);
+            console.log(`    Height: ${tubos.tubo60.especificaciones.height}, Width: ${tubos.tubo60.especificaciones.width}`);
+            console.log(`    Precio: €${tubos.tubo60.material.precioUnitario}`);
+        }
+    });
+}
+
 // Iniciar la aplicación
 init();
+
+// Descomentar para ver ejemplo en consola:
+// ejemploSeleccionTubos();
